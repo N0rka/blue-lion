@@ -1,0 +1,13 @@
+/**
+ * Topics actions
+ */
+export const FETCH_TOPICS_REQUEST = 'FETCH_TOPICS_REQUEST';
+export const FETCH_TOPICS_SUCCESS = 'FETCH_TOPICS_SUCCESS';
+export const FETCH_TOPICS_FAILURE = 'FETCH_TOPICS_FAILURE';
+
+/**
+ * Cloud actions
+ */
+export const CLOUD_PROCESS_START = 'CLOUD_PROCESS_START';
+export const CLOUD_PROCESS_END = 'CLOUD_PROCESS_END';
+export const UPDATE_SELECTED_WORD_ID = 'UPDATE_SELECTED_WORD_ID';

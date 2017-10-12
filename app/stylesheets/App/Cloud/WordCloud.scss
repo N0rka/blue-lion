@@ -1,0 +1,20 @@
+$color-grey: #a5aba4;
+$color-green: #23d51d;
+$color-red: #f41617;
+
+.section{
+  min-width: 400px;
+  max-width: 100%;
+}
+.colorGrey {
+  fill: $color-grey;
+}
+.colorGreen {
+  fill: $color-green;
+}
+.colorRed {
+  fill: $color-red;
+}
+.isSelected {
+  text-decoration: underline;
+}
