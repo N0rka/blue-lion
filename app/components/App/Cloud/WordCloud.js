@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
@@ -37,6 +37,7 @@ export default class WordCloud extends React.Component {
         if(wordList.length > 0){
             return (
                 <div  className={styles.section}>
+                    <h1>Word Cloud</h1>
                     <svg width={width} height={height}>
                         <g transform={'translate(' + [width/2, height/2] + ')'}>
                             {wordList.map(word =>

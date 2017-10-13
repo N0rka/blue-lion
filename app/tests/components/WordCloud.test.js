@@ -145,16 +145,19 @@ describe('<WordCloud />', () => {
 
     it('renders default state', () => {
         const wrapper = shallow(getComponentWithDefaultProps());
-        expect(wrapper.contains( <span>Cloud - Empty word list..</span>)).toEqual(true);
+        expect(wrapper.contains(<span>Cloud - Empty word list..</span>)).toEqual(true);
     });
 
     it('renders initial processing state', () => {
         const wrapper = shallow(getComponentWithProcessingProps());
-        expect(wrapper.contains( <span>Cloud is processing..</span>)).toEqual(true);
+        expect(wrapper.contains(<span>Cloud is processing..</span>)).toEqual(true);
     });
 
     it('checks number of rendered words', () => {
         const wrapper = shallow(getComponentWithPostProcessingProps());
+        expect(wrapper.find('h1')).toHaveLength(1);
+        expect(wrapper.find('svg')).toHaveLength(1);
+        expect(wrapper.find('g')).toHaveLength(1);
         expect(wrapper.find('text')).toHaveLength(2);
     });
 

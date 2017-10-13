@@ -44,7 +44,7 @@ export class App extends React.Component {
             isFetching,
             errorMessage
         } = this.props;
-
+// browsers: ['last 2 versions', 'ie > 8']
         if(errorMessage !== ''){
             return (
                 <div>
@@ -78,7 +78,7 @@ const mapStateToProps = state => {
     return {
         topicsGeneralInfo: getTopicsGeneralInfo(state),
         isFetching: getTopicsIsFetching(state),
-        errorMessage: getTopicsErrorMessage(state)
+        errorMessage: getTopicsErrorMessage(state),
     };
 };
 

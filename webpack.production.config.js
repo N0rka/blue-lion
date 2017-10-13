@@ -63,7 +63,7 @@ module.exports = {
                         options: {
                             plugins: (loader) =>[
                                 require('autoprefixer')({
-                                    browsers: ['last 2 versions', 'ie > 8']
+                                    browsers: ['chrome >= 35', 'safari >= 7', 'firefox >= 29' , 'ie > 8']
                                 })
                             ]
                         }

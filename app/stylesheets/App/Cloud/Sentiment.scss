@@ -1,0 +1,23 @@
+@import '../../Constants';
+.section{
+  max-width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+}
+.section > h1 {
+  font-size: 1.4em;
+}
+.section > h3 {
+  font-size: 1.2em;
+  margin: 1.1em 0;
+}
+.section > p {
+  font-size: 1em;
+}
+.colorGreen {
+  color: $color-green;
+}
+.colorRed {
+  color: $color-red;
+}

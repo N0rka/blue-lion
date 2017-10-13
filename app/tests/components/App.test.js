@@ -71,8 +71,7 @@ const topics = [
                 "volume": 165
             }
         ]
-    },
-    {
+    }, {
         "id": "1751295897__DJ",
         "label": "DJ",
         "volume": 48,
@@ -215,7 +214,6 @@ describe('<App />', () => {
 
     it('renders empty topic list state', () => {
         const wrapper = shallow(getComponentWithEmptyTopicListProps());
-        wrapper.props.errorMessage = '';
         expect(wrapper.contains(<span>Empty topic list..</span>)).toEqual(true);
     });
 

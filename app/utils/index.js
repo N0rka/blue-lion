@@ -51,3 +51,22 @@ export const getWordCloudLabelPartialStyle = (word, selectedWordId) => {
         className += (' ' + styles.isSelected);
     return className;
 };
+
+/**
+ * Return sentiment information of the selected word
+ * @param  {Object[]} wordList      List of cloud word
+ * @param  {Object} selectedWordId  Selected word id
+ * @return {Object}                 Sentiment information
+ */
+export const getCloudSelectedWordSentimentInfo = (wordList, selectedWordId) => {
+    if(wordList !==[] && selectedWordId !== ''){
+        const selectedWord = wordList.find(w => w.id === selectedWordId);
+        return {
+            id: selectedWord.id,
+            label: selectedWord.label,
+            volume: selectedWord.volume,
+            sentiment: selectedWord.sentiment,
+        }
+    }
+    return null;
+};

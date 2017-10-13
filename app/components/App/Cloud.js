@@ -26,14 +26,20 @@ import {
  */
 import {
     getTopicsWithFontSize,
-    getWordCloudLabelPartialStyle
+    getWordCloudLabelPartialStyle,
+    getCloudSelectedWordSentimentInfo
 } from '../../utils';
 
 /**
  * Import Components
  */
+import Sentiment from './Cloud/Sentiment';
 import WordCloud from './Cloud/WordCloud';
 
+/**
+ * Import styles
+ */
+import styles from '../../stylesheets/App/Cloud.scss';
 export class Cloud extends React.Component{
 
     constructor(props) {
@@ -94,17 +100,21 @@ export class Cloud extends React.Component{
             onSelectWord,
             selectedWordId
         } = this.props;
+        const sentimentInfo = getCloudSelectedWordSentimentInfo(wordList, selectedWordId);
 
         return (
-            <WordCloud
-                width={width}
-                height={height}
-                wordList={wordList}
-                isProcessing={isProcessing}
-                getWordCloudLabelPartialStyle={getWordCloudLabelPartialStyle}
-                onSelectWord={onSelectWord}
-                selectedWordId={selectedWordId}
-            />
+            <div className={styles.container}>
+                <WordCloud
+                    width={width}
+                    height={height}
+                    wordList={wordList}
+                    isProcessing={isProcessing}
+                    getWordCloudLabelPartialStyle={getWordCloudLabelPartialStyle}
+                    onSelectWord={onSelectWord}
+                    selectedWordId={selectedWordId}
+                />
+                <Sentiment sentimentInfo={sentimentInfo}/>
+            </div>
         );
     }
 }
