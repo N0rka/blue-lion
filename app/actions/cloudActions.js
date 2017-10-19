@@ -6,6 +6,12 @@ export const notifyProcessStart = () => (dispatch) => {
     });
 };
 
+export const notifyReloadTopicsRequest = () => (dispatch) => {
+    dispatch({
+        type: types.RELOAD_TOPICS_REQUEST
+    });
+};
+
 export const updateWordList = (wordList) => (dispatch) => {
     dispatch({
         type: types.CLOUD_PROCESS_END,

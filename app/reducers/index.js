@@ -30,3 +30,6 @@ export const getCloudIsProcessing = (state) =>
 
 export const getCloudSelectedWordId = (state) =>
     fromCloud.getSelectedWordId(state.cloud);
+
+export const getCloudIsTopicsReloadRequested = (state) =>
+    fromCloud.getIsTopicsReloadRequested(state.cloud);

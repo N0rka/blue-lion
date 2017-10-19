@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
+    RELOAD_TOPICS_REQUEST,
     CLOUD_PROCESS_START,
     CLOUD_PROCESS_END,
     UPDATE_SELECTED_WORD_ID
@@ -44,13 +45,29 @@ const selectedWordId = (state = '', action) => {
     }
 };
 
+/**
+ * Tracks topics reload request state
+ */
+const isTopicsReloadRequested = (state = false, action) => {
+    switch (action.type) {
+        case RELOAD_TOPICS_REQUEST:
+            return true;
+        case CLOUD_PROCESS_END:
+            return false;
+        default:
+            return state;
+    }
+};
+
 const cloud = combineReducers({
     wordList,
     isProcessing,
-    selectedWordId
+    selectedWordId,
+    isTopicsReloadRequested
 });
 export default cloud;
 
 export const getWordList = (state) => state.wordList.slice();
 export const getIsProcessing = (state) => state.isProcessing;
 export const getSelectedWordId = (state) => state.selectedWordId;
+export const getIsTopicsReloadRequested = (state) => state.isTopicsReloadRequested;

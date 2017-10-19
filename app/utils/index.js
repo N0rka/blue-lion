@@ -70,3 +70,85 @@ export const getCloudSelectedWordSentimentInfo = (wordList, selectedWordId) => {
     }
     return null;
 };
+
+/**
+ * Return a random int between 2 [included] values
+ * @param  {int} min    Minimum value
+ * @param  {int} max    Maximum value
+ * @return {int}        Random value
+ */
+ const  getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+/**
+ * Return a random int based on a specific pattern
+ * @return {int}        Random value
+ */
+const getSentimentScoreWithSeed = () => {
+    const seed = getRandomIntInclusive(1, 4);
+    if (seed < 3) {
+        return getRandomIntInclusive(41, 59);
+    } else if (seed > 3) {
+        return getRandomIntInclusive(60, 99);
+    } else {
+        return getRandomIntInclusive(0, 40);
+    }
+};
+
+/**
+ * Return a random int based on a specific pattern
+ * @return {int}        Random value
+ */
+const getSentimentWithSeed = () => {
+    const  seed = getRandomIntInclusive(1, 8);
+    if(seed < 6){
+        return getRandomIntInclusive(0, 39);
+    } else if(seed === 6){
+        return getRandomIntInclusive(40, 79);
+    } else if(seed === 7){
+        return getRandomIntInclusive(80, 119);
+    } else{
+        return getRandomIntInclusive(120, 179);
+    }
+};
+
+/**
+ * Return a list of topics with random numerical values
+ * @param  {string}     topicsType          type of generated topics ( 'random' || 'default')
+ * @param  {string[]}   topicLabelList      Topic label list
+ * @return {Object[]}                       List of topics
+ */
+export const generateRandomTopics = (topicsType, topicLabelList) => {
+    let negativeSentiment = -1;
+    let neutralSentiment = -1;
+    let positiveSentiment = -1;
+    const topicList = topicLabelList.map(t => {
+        negativeSentiment = getSentimentWithSeed();
+        neutralSentiment = getSentimentWithSeed();
+        positiveSentiment = getSentimentWithSeed();
+        return {
+            id: getRandomIntInclusive(1000000, 9999999) + '__' + t,
+            label: t,
+            volume: negativeSentiment + neutralSentiment + positiveSentiment,
+            type: 'topic',
+            sentiment: {
+                "negative": negativeSentiment,
+                "neutral": neutralSentiment,
+                "positive": positiveSentiment
+            },
+            sentimentScore: getSentimentScoreWithSeed(),
+            burst: getRandomIntInclusive(0, 50)
+        }
+    });
+    if(topicsType === 'random'){
+        return topicList.sort((a, b) => {
+            if (a.id > b.id)
+                return 1;
+            return 0;
+        }).slice(0,getRandomIntInclusive(15, 22));
+    }
+    return topicList;
+};

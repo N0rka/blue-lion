@@ -5,6 +5,7 @@ import React from 'react';
 import { Cloud } from '../../components/App/Cloud';
 
 Enzyme.configure({ adapter: new Adapter() });
+const mockFn = jest.fn().mockImplementation(() => {});
 
 const getComponentWithDefaultProps = (
     width = 400,
@@ -16,8 +17,9 @@ const getComponentWithDefaultProps = (
     selectedWordId ='',
     getWordCloudLabelPartialStyle = () => { },
     onSelectWord = () => { },
-    onD3CloudProcessStart = () => {},
-    onD3CloudProcessEnd = (wordList) => {}
+    onD3CloudProcessStart = () => { new mockFn() },
+    onD3CloudProcessEnd = (wordList) => {},
+    isTopicsReloadRequested = false,
 ) => {
     return (
         <Cloud
@@ -32,6 +34,7 @@ const getComponentWithDefaultProps = (
             onSelectWord={onSelectWord}
             onD3CloudProcessStart={onD3CloudProcessStart}
             onD3CloudProcessEnd={onD3CloudProcessEnd}
+            isTopicsReloadRequested={isTopicsReloadRequested}
         />
     );
 };
@@ -40,6 +43,13 @@ describe('<Cloud />', () => {
     it('calls componentDidMount', () => {
         const spy = jest.spyOn(Cloud.prototype, 'componentDidMount');
         shallow(getComponentWithDefaultProps());
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('calls componentDidUpdate', () => {
+        const spy = jest.spyOn(Cloud.prototype, 'componentDidUpdate');
+        const wrapper = shallow(getComponentWithDefaultProps());
+        wrapper.setProps({ isTopicsReloadRequested: true });
         expect(spy).toHaveBeenCalled();
     });
 });

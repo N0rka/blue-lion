@@ -15,8 +15,15 @@ module.exports = {
         filename: '[name].js',
         publicPath: '/'
     },
+    /*
     externals: {
         fs: '{}'
+    },*/
+    node: {
+        console: true,
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -62,6 +69,11 @@ module.exports = {
                     }
                 },
                 'sass-loader']
+        }, {
+            test: /\.json?$/,
+            use:{
+                loader: 'json-loader'
+            }
         }]
     }
 };

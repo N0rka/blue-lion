@@ -1,14 +1,26 @@
 import * as types from './actionTypes';
 
-export const fetchTopics = () => (dispatch) => {
+import { generateRandomTopics } from '../utils';
+
+export const fetchTopics = (topicsType) => (dispatch) => {
+    let topicsLabels = [];
+    let topics = [];
+
     dispatch({
         type: types.FETCH_TOPICS_REQUEST
     });
+
     try {
-        const fileContent = require('../../topics.json');
+        const jsonContent = require('../../topics.json');
+        if(topicsType === 'random'){
+            topicsLabels = jsonContent.randomLabels;
+        } else {
+            topicsLabels = jsonContent.defaultLabels;
+        }
+        topics = generateRandomTopics(topicsType, topicsLabels);
         dispatch({
             type: types.FETCH_TOPICS_SUCCESS,
-            topics: fileContent.topics
+            topics: topics
         });
     } catch(error) {
         dispatch({

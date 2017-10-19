@@ -5,6 +5,7 @@ import React from 'react';
 import WordCloud from '../../components/App/Cloud/WordCloud';
 
 Enzyme.configure({ adapter: new Adapter() });
+const mockFn = jest.fn().mockImplementation(() => {});
 
 /**
  * Fake wordList stored after the d3 cloud processing
@@ -125,7 +126,7 @@ const getComponentWithPostProcessingProps = (
     isProcessing = false,
     wordList = words,
     getWordCloudLabelPartialStyle = () => {},
-    onSelectWord = () => { jest.fn() },
+    onSelectWord = () => { new mockFn() },
     selectedWordId = ''
 ) => {
     return (
@@ -153,12 +154,16 @@ describe('<WordCloud />', () => {
         expect(wrapper.contains(<span>Cloud is processing..</span>)).toEqual(true);
     });
 
-    it('checks number of rendered words', () => {
+    it('renders word cloud', () => {
         const wrapper = shallow(getComponentWithPostProcessingProps());
-        expect(wrapper.find('h1')).toHaveLength(1);
         expect(wrapper.find('svg')).toHaveLength(1);
         expect(wrapper.find('g')).toHaveLength(1);
         expect(wrapper.find('text')).toHaveLength(2);
     });
 
+    it('checks number of rendered words', () => {
+        const wrapper = shallow(getComponentWithPostProcessingProps());
+        wrapper.find('text').map(t => t.simulate('click'));
+        expect(mockFn.mock.calls).toHaveLength(2);
+    });
 });

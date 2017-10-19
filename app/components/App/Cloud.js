@@ -68,7 +68,7 @@ export class Cloud extends React.Component{
         d3Cloud()
             .size([width, height])
             .words(getTopicsWithFontSize(topics, fontSizes))
-            .padding(10)
+            .padding(9)
             .text((w) => w.label)
             .fontSize((w) => w.fontSize)
             .random(() => 0.5)
@@ -85,6 +85,11 @@ export class Cloud extends React.Component{
      */
     componentDidMount() {
         this.calculateWordCloud();
+    }
+
+    componentDidUpdate() {
+        if(this.props.isTopicsReloadRequested)
+            this.calculateWordCloud();
     }
 
     /**
@@ -151,4 +156,5 @@ Cloud.propTypes = {
     height: PropTypes.number.isRequired,
     fontSizes: PropTypes.array.isRequired,
     topics: PropTypes.array.isRequired,
+    isTopicsReloadRequested: PropTypes.bool.isRequired,
 };

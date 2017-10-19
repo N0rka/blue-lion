@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
  * Import action functions
  */
 import { fetchTopics } from '../actions/topicsActions';
+import {
+    notifyReloadTopicsRequest,
+    updateSelectedWordId
+} from '../actions/cloudActions';
 
 /**
  * Import reducer functions
@@ -12,13 +16,15 @@ import { fetchTopics } from '../actions/topicsActions';
 import {
     getTopicsGeneralInfo,
     getTopicsIsFetching,
-    getTopicsErrorMessage
+    getTopicsErrorMessage,
+    getCloudIsTopicsReloadRequested
 } from '../reducers';
 
 /**
  * Import Components
  */
 import Cloud from './App/Cloud';
+import Header from './App/Header';
 
 export class App extends React.Component {
 
@@ -42,9 +48,10 @@ export class App extends React.Component {
         const {
             topicsGeneralInfo,
             isFetching,
-            errorMessage
+            errorMessage,
+            onReloadTopicsRequest,
+            isTopicsReloadRequested
         } = this.props;
-// browsers: ['last 2 versions', 'ie > 8']
         if(errorMessage !== ''){
             return (
                 <div>
@@ -60,12 +67,18 @@ export class App extends React.Component {
         }
         if(topicsGeneralInfo.length > 0){
             return (
-                <Cloud
-                    width={400}
-                    height={400}
-                    topics={topicsGeneralInfo}
-                    fontSizes={[12, 16, 22, 30, 40, 52]}
-                />
+                <div>
+                    <Header
+                        onReloadTopicsRequest={onReloadTopicsRequest}
+                    />
+                    <Cloud
+                        width={450}
+                        height={450}
+                        topics={topicsGeneralInfo}
+                        fontSizes={[12, 16, 22, 30, 40, 52]}
+                        isTopicsReloadRequested={isTopicsReloadRequested}
+                    />
+                </div>
             );
         }
         return (
@@ -79,13 +92,19 @@ const mapStateToProps = state => {
         topicsGeneralInfo: getTopicsGeneralInfo(state),
         isFetching: getTopicsIsFetching(state),
         errorMessage: getTopicsErrorMessage(state),
+        isTopicsReloadRequested: getCloudIsTopicsReloadRequested(state)
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchTopics: () => {
-            dispatch(fetchTopics());
+        fetchTopics: (topicsType) => {
+            dispatch(fetchTopics(topicsType));
+        },
+        onReloadTopicsRequest: (topicsType) => {
+            dispatch(notifyReloadTopicsRequest());
+            dispatch(updateSelectedWordId(''));
+            dispatch(fetchTopics(topicsType));
         },
     };
 };

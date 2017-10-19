@@ -4,6 +4,7 @@ blue-lion
 Simple word cloud project for demonstration purpose.
 
 
+
 ## Installation
 This assumes that you’re using [node](https://nodejs.org/en/) and [npm](http://npmjs.com/).
 1. Clone the project.

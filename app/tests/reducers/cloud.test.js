@@ -72,14 +72,16 @@ describe('cloud reducer', () => {
             {
                 wordList: undefined,
                 isProcessing: undefined,
-                selectedWordId: undefined
+                selectedWordId: undefined,
+                isTopicsReloadRequested: undefined
             },
             {}
         )).toEqual(
             {
                 wordList: [],
                 isProcessing: false,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             }
         )
     });
@@ -89,7 +91,8 @@ describe('cloud reducer', () => {
             {
                 wordList: [],
                 isProcessing: false,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             },
             {
                 type: types.CLOUD_PROCESS_START
@@ -98,7 +101,8 @@ describe('cloud reducer', () => {
             {
                 wordList: [],
                 isProcessing: true,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             }
         )
     });
@@ -108,7 +112,8 @@ describe('cloud reducer', () => {
             {
                 wordList: [],
                 isProcessing: true,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             },
             {
                 type: types.CLOUD_PROCESS_END,
@@ -118,7 +123,8 @@ describe('cloud reducer', () => {
             {
                 wordList: wordList,
                 isProcessing: false,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             }
         )
     });
@@ -128,17 +134,62 @@ describe('cloud reducer', () => {
             {
                 wordList: wordList,
                 isProcessing: false,
-                selectedWordId: ''
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             },
             {
                 type: types.UPDATE_SELECTED_WORD_ID,
-                wordId: "1751295897__Berlin"
+                wordId: '1751295897__Berlin'
             }
         )).toEqual(
             {
                 wordList: wordList,
                 isProcessing: false,
-                selectedWordId: "1751295897__Berlin"
+                selectedWordId: '1751295897__Berlin',
+                isTopicsReloadRequested: false
+            }
+        )
+    });
+
+    it('handles the reload request of the topic list', () => {
+        expect(cloud(
+            {
+                wordList: wordList,
+                isProcessing: false,
+                selectedWordId: '',
+                isTopicsReloadRequested: false
+            },
+            {
+                type: types.RELOAD_TOPICS_REQUEST,
+            }
+        )).toEqual(
+            {
+                wordList: wordList,
+                isProcessing: false,
+                selectedWordId: '',
+                isTopicsReloadRequested: true
+            }
+        )
+    });
+
+    it('handles the reload success of the topic list', () => {
+        expect(cloud(
+            {
+                wordList: wordList,
+                isProcessing: true,
+                selectedWordId: '',
+                isTopicsReloadRequested: true
+            },
+            {
+                type: types.CLOUD_PROCESS_END,
+                wordList: wordList.slice().concat(wordList.slice())
+            }
+        )).toEqual(
+            {
+                wordList: wordList.slice().concat(wordList.slice()),
+                isProcessing: false,
+                selectedWordId: '',
+                isTopicsReloadRequested: false
             }
         )
     });
