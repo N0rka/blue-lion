@@ -37,8 +37,8 @@ export class App extends React.Component {
     }
 
     /**
-     * Render App component
-     * @return {ReactElement} App component
+     * Render
+     * @return {ReactComponent}
      */
     render() {
         const {

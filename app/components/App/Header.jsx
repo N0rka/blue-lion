@@ -16,6 +16,10 @@ export default class Header extends React.Component {
         this.props.onReloadTopicsRequest('random');
     }
 
+  /**
+   * Render
+   * @return {ReactComponent}
+   */
     render() {
         return (
           <div>

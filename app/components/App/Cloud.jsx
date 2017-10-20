@@ -93,7 +93,7 @@ export class Cloud extends React.Component {
 
     /**
      * Render
-     * @return {ReactElement} [description]
+     * @return {ReactComponent}
      */
     render() {
         const {
@@ -141,6 +141,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+/**
+ * Export the connected App component
+ */
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
