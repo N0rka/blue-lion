@@ -5,17 +5,13 @@ import React from 'react';
 import Header from '../../components/App/Header';
 
 Enzyme.configure({ adapter: new Adapter() });
-const mockFn = jest.fn().mockImplementation(() => {});
+const MockFn = jest.fn().mockImplementation(() => {});
 
-const getComponentWithDefaultProps = (
-    onReloadTopicsRequest = () => { new mockFn() }
-) => {
-    return (
-        <Header
-            onReloadTopicsRequest={onReloadTopicsRequest}
-        />
+const getComponentWithDefaultProps = (onReloadTopicsRequest = () => { MockFn(); }) => (
+  <Header
+    onReloadTopicsRequest={onReloadTopicsRequest}
+  />
     );
-};
 
 describe('<Header />', () => {
     it('renders default state', () => {
@@ -27,6 +23,6 @@ describe('<Header />', () => {
     it('simulates click on each button', () => {
         const wrapper = shallow(getComponentWithDefaultProps());
         wrapper.find('button').map(b => b.simulate('click'));
-        expect(mockFn.mock.calls).toHaveLength(2);
+        expect(MockFn.mock.calls).toHaveLength(2);
     });
 });

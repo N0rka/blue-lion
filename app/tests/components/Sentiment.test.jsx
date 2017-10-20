@@ -6,37 +6,28 @@ import Sentiment from '../../components/App/Cloud/Sentiment';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const getComponentWithDefaultProps = (
-    sentimentInfo = null,
-) => {
-    return (
-        <Sentiment
-            sentimentInfo={sentimentInfo}
-        />
+const getComponentWithDefaultProps = (sentimentInfo = null) => (
+  <Sentiment
+    sentimentInfo={sentimentInfo}
+  />
     );
-};
 
-const getComponentWithSentimentInfoProps = (
-    sentiment = {
+const getComponentWithSentimentInfoProps = (sentiment = {
         id: 'sentimentInfo_id',
         label: 'sentimentInfo_label',
         volume: 22,
         sentiment: {
             positive: 15,
             neutral: 5,
-            negative: 2
+            negative: 2,
         },
-    },
-) => {
-    return (
-        <Sentiment
-            sentimentInfo={sentiment}
-        />
+    }) => (
+      <Sentiment
+        sentimentInfo={sentiment}
+      />
     );
-};
 
 describe('<Sentiment />', () => {
-
     it('renders default state', () => {
         const wrapper = shallow(getComponentWithDefaultProps());
         expect(wrapper.contains(<p>Select a topic to view its information.</p>)).toEqual(true);
