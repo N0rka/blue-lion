@@ -95,4 +95,13 @@ describe('cloud actions', () => {
     store.dispatch(actions.updateSelectedWordId('fakeSelectedWordId'));
     expect(store.getActions()).toEqual(expectedActions);
   });
+  it('should load the percentage of the selected piece of pieChart', () => {
+    const store = mockStore({ percentage: -1 });
+    const expectedActions = [{
+      type: types.UPDATE_INFO_BAR_PIE_CHART_PERCENTAGE,
+      percentage: 28,
+    }];
+    store.dispatch(actions.updateInfoBarPieChartPercentage(28));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
 });

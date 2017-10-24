@@ -5,6 +5,7 @@ import {
   CLOUD_PROCESS_START,
   CLOUD_PROCESS_END,
   UPDATE_SELECTED_WORD_ID,
+  UPDATE_INFO_BAR_PIE_CHART_PERCENTAGE,
 } from '../actions/actionTypes';
 
 /**
@@ -59,11 +60,21 @@ const isTopicsReloadRequested = (state = false, action) => {
   }
 };
 
+const pieChartPercentage = (state = -1, action) => {
+  switch (action.type) {
+    case UPDATE_INFO_BAR_PIE_CHART_PERCENTAGE:
+      return action.percentage;
+    default:
+      return state;
+  }
+};
+
 const cloud = combineReducers({
   wordList,
   isProcessing,
   selectedWordId,
   isTopicsReloadRequested,
+  pieChartPercentage,
 });
 export default cloud;
 
@@ -71,3 +82,4 @@ export const getWordList = state => state.wordList.slice();
 export const getIsProcessing = state => state.isProcessing;
 export const getSelectedWordId = state => state.selectedWordId;
 export const getIsTopicsReloadRequested = state => state.isTopicsReloadRequested;
+export const getPieChartPercentage = state => state.pieChartPercentage;

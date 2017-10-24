@@ -16,7 +16,7 @@ const getComponentWithDefaultProps = (onReloadTopicsRequest = () => { MockFn(); 
 describe('<Header />', () => {
     it('renders default state', () => {
         const wrapper = shallow(getComponentWithDefaultProps());
-        expect(wrapper.find('h1')).toHaveLength(1);
+        expect(wrapper.find('span')).toHaveLength(1);
         expect(wrapper.find('button')).toHaveLength(2);
     });
 

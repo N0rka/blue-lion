@@ -1,9 +1,7 @@
-@import '../../Constants';
+@import '../../../Constants';
 .section{
-  max-width: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
   text-align: left;
+  margin-left: 2Em
 }
 .section > h1 {
   font-size: 1.4em;

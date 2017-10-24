@@ -61,14 +61,14 @@ export const getWordCloudLabelPartialStyle = (word, selectedWordId) => {
  * @param  {Object} selectedWordId  Selected word id
  * @return {Object}                 Sentiment information
  */
-export const getCloudSelectedWordSentimentInfo = (wordList, selectedWordId) => {
+export const getCloudSelectedWordInfoById = (wordList, selectedWordId) => {
   if (wordList !== [] && selectedWordId !== '') {
     const selectedWord = wordList.find(w => w.id === selectedWordId);
     return {
-      id: selectedWord.id,
       label: selectedWord.label,
       volume: selectedWord.volume,
       sentiment: selectedWord.sentiment,
+      pageType: selectedWord.pageType,
     };
   }
   return null;
@@ -145,6 +145,17 @@ export const generateRandomTopics = (topicsType, topicLabelList) => {
       },
       sentimentScore: getSentimentScoreWithSeed(),
       burst: getRandomIntInclusive(0, 50),
+      pageType: {
+        blog: getRandomIntInclusive(0, 50),
+        facebook: getRandomIntInclusive(0, 50),
+        forum: getRandomIntInclusive(0, 50),
+        general: getRandomIntInclusive(0, 50),
+        image: getRandomIntInclusive(0, 50),
+        news: getRandomIntInclusive(0, 50),
+        review: getRandomIntInclusive(0, 50),
+        twitter: getRandomIntInclusive(0, 50),
+        video: getRandomIntInclusive(0, 50),
+      },
     };
   });
   if (topicsType === 'random') {

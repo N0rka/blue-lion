@@ -1,0 +1,17 @@
+@import '../../Constants';
+.container {
+  background-color: #f5f9ff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1Em;
+  border: solid 2px $color-blue;
+  border-radius: 9px;
+}
+
+.label {
+  padding: 0 10px;
+  background-color: #acd0ff;;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

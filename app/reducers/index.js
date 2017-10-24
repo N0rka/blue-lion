@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
 });
 export default rootReducer;
 
-export const getTopicsGeneralInfo = state =>
-  fromTopics.getGeneralInfo(state.topics);
+export const getTopicsTopicList = state =>
+  fromTopics.getTopicList(state.topics);
 
 export const getTopicsIsFetching = state =>
   fromTopics.getIsFetching(state.topics);
@@ -33,3 +33,6 @@ export const getCloudSelectedWordId = state =>
 
 export const getCloudIsTopicsReloadRequested = state =>
   fromCloud.getIsTopicsReloadRequested(state.cloud);
+
+export const getCloudPieChartPercentage = state =>
+  fromCloud.getPieChartPercentage(state.cloud);

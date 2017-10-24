@@ -25,3 +25,10 @@ export const updateSelectedWordId = wordId => (dispatch) => {
     wordId,
   });
 };
+
+export const updateInfoBarPieChartPercentage = percentage => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_INFO_BAR_PIE_CHART_PERCENTAGE,
+    percentage,
+  });
+};

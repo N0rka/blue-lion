@@ -9,7 +9,7 @@ import {
 /**
  * Stores the complete list of topics general information
  */
-const generalInfo = (state = [], action) => {
+const topicList = (state = [], action) => {
   switch (action.type) {
     case FETCH_TOPICS_SUCCESS:
       return action.topics.map(t => ({
@@ -20,6 +20,7 @@ const generalInfo = (state = [], action) => {
         sentiment: t.sentiment,
         sentimentScore: t.sentimentScore,
         burst: t.burst,
+        pageType: t.pageType,
       }));
     default:
       return state;
@@ -57,12 +58,12 @@ const errorMessage = (state = '', action) => {
 };
 
 const topics = combineReducers({
-  generalInfo,
+  topicList,
   isFetching,
   errorMessage,
 });
 export default topics;
 
-export const getGeneralInfo = state => state.generalInfo.slice();
+export const getTopicList = state => state.topicList.slice();
 export const getIsFetching = state => state.isFetching;
 export const getErrorMessage = state => state.errorMessage;

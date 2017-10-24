@@ -10,30 +10,36 @@ const MockFn = jest.fn().mockImplementation(() => {});
 const getComponentWithDefaultProps = (
     width = 400,
     height = 400,
-    topics = [],
     fontSizes = [12, 16, 22, 30, 40, 52],
+    topicList = [],
+    isTopicsReloadRequested = false,
+    cloudWordList = [],
     isProcessing = false,
-    wordList = [],
     selectedWordId = '',
-    getWordCloudLabelPartialStyle = () => { },
-    onSelectWord = () => { },
     onD3CloudProcessStart = () => { MockFn(); },
     onD3CloudProcessEnd = () => {},
-    isTopicsReloadRequested = false,
+    onSelectWord = () => {},
+    getWordCloudLabelPartialStyle = () => {},
+    pieChartPercentage = -1,
+    onPathOver = () => {},
+    onPathOut = () => {},
 ) => (
   <Cloud
     width={width}
     height={height}
-    topics={topics}
+    topicList={topicList}
     fontSizes={fontSizes}
     isProcessing={isProcessing}
-    wordList={wordList}
+    wordList={cloudWordList}
     selectedWordId={selectedWordId}
     getWordCloudLabelPartialStyle={getWordCloudLabelPartialStyle}
     onSelectWord={onSelectWord}
     onD3CloudProcessStart={onD3CloudProcessStart}
     onD3CloudProcessEnd={onD3CloudProcessEnd}
     isTopicsReloadRequested={isTopicsReloadRequested}
+    pieChartPercentage={pieChartPercentage}
+    onPathOver={onPathOver}
+    onPathOut={onPathOut}
   />
     );
 

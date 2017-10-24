@@ -73,6 +73,7 @@ describe('cloud reducer', () => {
         isProcessing: undefined,
         selectedWordId: undefined,
         isTopicsReloadRequested: undefined,
+        pieChartPercentage: undefined,
       },
       {},
     )).toEqual({
@@ -80,6 +81,7 @@ describe('cloud reducer', () => {
       isProcessing: false,
       selectedWordId: '',
       isTopicsReloadRequested: false,
+      pieChartPercentage: -1,
     });
   });
 
@@ -90,6 +92,7 @@ describe('cloud reducer', () => {
         isProcessing: false,
         selectedWordId: '',
         isTopicsReloadRequested: false,
+        pieChartPercentage: -1,
       },
       {
         type: types.CLOUD_PROCESS_START,
@@ -99,6 +102,7 @@ describe('cloud reducer', () => {
       isProcessing: true,
       selectedWordId: '',
       isTopicsReloadRequested: false,
+      pieChartPercentage: -1,
     });
   });
 
@@ -109,6 +113,7 @@ describe('cloud reducer', () => {
         isProcessing: true,
         selectedWordId: '',
         isTopicsReloadRequested: false,
+        pieChartPercentage: -1,
       },
       {
         type: types.CLOUD_PROCESS_END,
@@ -119,6 +124,7 @@ describe('cloud reducer', () => {
       isProcessing: false,
       selectedWordId: '',
       isTopicsReloadRequested: false,
+      pieChartPercentage: -1,
     });
   });
 
@@ -129,6 +135,7 @@ describe('cloud reducer', () => {
         isProcessing: false,
         selectedWordId: '',
         isTopicsReloadRequested: false,
+        pieChartPercentage: -1,
       },
       {
         type: types.UPDATE_SELECTED_WORD_ID,
@@ -139,6 +146,7 @@ describe('cloud reducer', () => {
       isProcessing: false,
       selectedWordId: '1751295897__Berlin',
       isTopicsReloadRequested: false,
+      pieChartPercentage: -1,
     });
   });
 
@@ -149,6 +157,7 @@ describe('cloud reducer', () => {
         isProcessing: false,
         selectedWordId: '',
         isTopicsReloadRequested: false,
+        pieChartPercentage: -1,
       },
       {
         type: types.RELOAD_TOPICS_REQUEST,
@@ -158,6 +167,7 @@ describe('cloud reducer', () => {
       isProcessing: false,
       selectedWordId: '',
       isTopicsReloadRequested: true,
+      pieChartPercentage: -1,
     });
   });
 
@@ -168,6 +178,7 @@ describe('cloud reducer', () => {
         isProcessing: true,
         selectedWordId: '',
         isTopicsReloadRequested: true,
+        pieChartPercentage: -1,
       },
       {
         type: types.CLOUD_PROCESS_END,
@@ -178,6 +189,29 @@ describe('cloud reducer', () => {
       isProcessing: false,
       selectedWordId: '',
       isTopicsReloadRequested: false,
+      pieChartPercentage: -1,
+    });
+  });
+
+  it('handles the update of the percentage stored when a pie chart pie is hovered', () => {
+    expect(cloud(
+      {
+        wordList,
+        isProcessing: false,
+        selectedWordId: '',
+        isTopicsReloadRequested: false,
+        pieChartPercentage: -1,
+      },
+      {
+        type: types.UPDATE_INFO_BAR_PIE_CHART_PERCENTAGE,
+        percentage: 32,
+      },
+    )).toEqual({
+      wordList,
+      isProcessing: false,
+      selectedWordId: '',
+      isTopicsReloadRequested: false,
+      pieChartPercentage: 32,
     });
   });
 });

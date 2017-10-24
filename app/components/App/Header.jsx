@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import styles from '../../stylesheets/App/Header.scss';
+
+const propTypes = {
+  onReloadTopicsRequest: PropTypes.func.isRequired,
+};
+
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -22,8 +28,8 @@ export default class Header extends React.Component {
    */
     render() {
         return (
-          <div>
-            <h1>Word Cloud</h1>
+          <div className={styles.container}>
+            <span className={styles.title}>Word Cloud</span>
             <button onClick={this.handleDefaultTopicsLoading}>
                     default
             </button>
@@ -35,6 +41,4 @@ export default class Header extends React.Component {
     }
 }
 
-Header.propTypes = {
-    onReloadTopicsRequest: PropTypes.func.isRequired,
-};
+Header.propTypes = propTypes;
