@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 /**
  * Import action functions
  */
-import fetchTopics from '../actions/topicsActions';
 import {
   notifyReloadTopicsRequest,
   updateSelectedWordId,
 } from '../actions/cloudActions';
+import modifyInfoPanelDisplay from '../actions/infoPanelActions';
+import fetchTopics from '../actions/topicsActions';
 
 /**
  * Import reducer functions
@@ -19,6 +20,7 @@ import {
   getTopicsIsFetching,
   getTopicsErrorMessage,
   getCloudIsTopicsReloadRequested,
+  getInfoPanelIsDisplayed,
 } from '../reducers';
 
 /**
@@ -26,6 +28,7 @@ import {
  */
 import CloudContainer from './App/Cloud.jsx';
 import Header from './App/Header.jsx';
+import InfoPanel from './App/InfoPanel.jsx';
 
 const propTypes = {
   fetchTopics: PropTypes.func.isRequired,
@@ -57,6 +60,8 @@ const propTypes = {
   errorMessage: PropTypes.string,
   onReloadTopicsRequest: PropTypes.func,
   isTopicsReloadRequested: PropTypes.bool,
+  isInfoPanelDisplayed: PropTypes.bool,
+  onModifyInfoPanelDisplayRequest: PropTypes.func,
 };
 
 const defaultProps = {
@@ -65,6 +70,8 @@ const defaultProps = {
   errorMessage: '',
   onReloadTopicsRequest: null,
   isTopicsReloadRequested: false,
+  isInfoPanelDisplayed: false,
+  onModifyInfoPanelDisplayRequest: null,
 };
 
 export class App extends React.Component {
@@ -87,6 +94,8 @@ export class App extends React.Component {
       errorMessage,
       onReloadTopicsRequest,
       isTopicsReloadRequested,
+      isInfoPanelDisplayed,
+      onModifyInfoPanelDisplayRequest,
     } = this.props;
 
     if (errorMessage !== '') {
@@ -107,6 +116,11 @@ export class App extends React.Component {
           <div>
             <Header
               onReloadTopicsRequest={onReloadTopicsRequest}
+              onModifyInfoPanelDisplayRequest={onModifyInfoPanelDisplayRequest}
+            />
+            <InfoPanel
+              isDisplayed={isInfoPanelDisplayed}
+              onModifyInfoPanelDisplayRequest={onModifyInfoPanelDisplayRequest}
             />
             <CloudContainer
               width={450}
@@ -130,6 +144,7 @@ const mapStateToProps = state => ({
         isFetching: getTopicsIsFetching(state),
         errorMessage: getTopicsErrorMessage(state),
         isTopicsReloadRequested: getCloudIsTopicsReloadRequested(state),
+        isInfoPanelDisplayed: getInfoPanelIsDisplayed(state),
     });
 
 const mapDispatchToProps = dispatch => ({
@@ -140,6 +155,9 @@ const mapDispatchToProps = dispatch => ({
             dispatch(notifyReloadTopicsRequest());
             dispatch(updateSelectedWordId(''));
             dispatch(fetchTopics(topicsType));
+        },
+        onModifyInfoPanelDisplayRequest: () => {
+          dispatch(modifyInfoPanelDisplay());
         },
     });
 

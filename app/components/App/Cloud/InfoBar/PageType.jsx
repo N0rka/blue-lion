@@ -26,7 +26,7 @@ const propTypes = {
 
 const PageType = (props) => {
   /**
-   * Renders the page type information of the selected topic
+   * Renders the media information of the selected topic
    * @return {ReactComponent}
    */
   const {
@@ -69,7 +69,6 @@ const PageType = (props) => {
         width={80}
         height={height}
       />
-
     </div>
   );
 };

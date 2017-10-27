@@ -17,7 +17,7 @@ const propTypes = {
 
 const Sentiment = (props) => {
   /**
-   * Renders the volume information of the selected topic
+   * Renders the detailed volume information of the selected topic
    * @return {ReactComponent}
    */
   const { volume, sentiment } = props;

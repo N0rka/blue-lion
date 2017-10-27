@@ -5,22 +5,28 @@ import styles from '../../stylesheets/App/Header.scss';
 
 const propTypes = {
   onReloadTopicsRequest: PropTypes.func.isRequired,
+  onModifyInfoPanelDisplayRequest: PropTypes.func.isRequired,
 };
 
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDefaultTopicsLoading = this.handleDefaultTopicsLoading.bind(this);
-        this.handleRandomTopicsLoading = this.handleRandomTopicsLoading.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.handleDefaultTopicsLoading = this.handleDefaultTopicsLoading.bind(this);
+    this.handleRandomTopicsLoading = this.handleRandomTopicsLoading.bind(this);
+    this.handleInfoPanelDisplayModificationRequest = this.handleInfoPanelDisplayModificationRequest.bind(this);
+  }
 
-    handleDefaultTopicsLoading() {
-        this.props.onReloadTopicsRequest();
-    }
+  handleDefaultTopicsLoading() {
+      this.props.onReloadTopicsRequest();
+  }
 
-    handleRandomTopicsLoading() {
-        this.props.onReloadTopicsRequest('random');
-    }
+  handleRandomTopicsLoading() {
+      this.props.onReloadTopicsRequest('random');
+  }
+
+  handleInfoPanelDisplayModificationRequest() {
+    this.props.onModifyInfoPanelDisplayRequest();
+  }
 
   /**
    * Render
@@ -30,11 +36,23 @@ export default class Header extends React.Component {
         return (
           <div className={styles.container}>
             <span className={styles.title}>Word Cloud</span>
-            <button onClick={this.handleDefaultTopicsLoading}>
-                    default
+            <button
+              className={styles.infoButton}
+              onClick={this.handleInfoPanelDisplayModificationRequest}
+            >
+              i
             </button>
-            <button onClick={this.handleRandomTopicsLoading}>
-                    random
+            <button
+              className={styles.reloadTopicsButton}
+              onClick={this.handleDefaultTopicsLoading}
+            >
+              Default
+            </button>
+            <button
+              className={styles.reloadTopicsButton}
+              onClick={this.handleRandomTopicsLoading}
+            >
+              Random
             </button>
           </div>
         );

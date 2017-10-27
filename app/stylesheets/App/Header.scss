@@ -8,27 +8,26 @@
   justify-content: flex-start;
   align-items: flex-start;
   background-color: #eef4ff;
+  font-family: $global-font;
 }
 
 .title {
   margin: 5px 50px 5px 10px;
   font-size: 28px;
-  font-family: "Bitter", serif;
+  font-weight: bold;
 }
 
-button {
-  margin: 0 10px 0 0;
+.infoButton {
+  padding: 4px 12px;
+  margin: 0 40px 0 0;
+  font-weight: bold;
+  border: solid 2px $color-blue;
+  border-radius: 30px;
+}
+
+.reloadTopicsButton {
   padding: 4px 11px 5px 11px;
-  font-size: 18px;
-  font-family: "Bitter", serif;
+  margin: 0 10px 0 0;
+  border: solid 2px $color-blue;
   border-radius: 9px;
-  color: $color-blue;
-  background: rgba(0,0,0,0);
-  border: solid 2px #6496c8;
-}
-
-button:hover{
-  transition-duration: 2s;
-  color: #ffffff;
-  background: #234e7f;
 }

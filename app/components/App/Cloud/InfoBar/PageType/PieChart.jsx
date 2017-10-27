@@ -22,7 +22,7 @@ const propTypes = {
 
 const PieChart = (props) => {
   /**
-   * Renders the page type information of the selected topic
+   * Renders the selected topic media information
    * @return {ReactComponent}
    */
   const {
@@ -50,7 +50,7 @@ const PieChart = (props) => {
     }, 0);
     return Math.floor(currentValue / total * 100);
   };
-  let percentageDisplay = () => {
+  const displayPercentage = () => {
     if(pieChartPercentage !== -1){
       return(
         <g transform={`translate(${width/2}, ${height/2})`}>
@@ -85,7 +85,7 @@ const PieChart = (props) => {
             ))
           }
         </g>
-        { percentageDisplay() }
+        { displayPercentage() }
       </svg>
     </div>
   );

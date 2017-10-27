@@ -16,7 +16,7 @@ const propTypes = {
 
 const Legend = (props) => {
   /**
-   * Renders the page type information of the selected topic
+   * Renders the media legend
    * @return {ReactComponent}
    */
   const {

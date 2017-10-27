@@ -1,3 +1,11 @@
+## v0.6
+ - Added tests on utils functions
+ - Modified topics generation algorithm for greater consistency
+ - Added CSS
+ - Added tests on actions, components and reducers
+ - Added infoPanel reducer and action
+ - Added InfoPanel Component
+ 
 ## v0.5
  - Added tests on actions, components and reducers
  - Updated cloud reducer to allow display of the pie chart path percentage

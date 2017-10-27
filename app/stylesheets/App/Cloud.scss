@@ -1,10 +1,12 @@
+@import '../Constants';
 .container {
   min-width: 450px;
   width: auto;
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin-top: 2Em;
+  font-family: $global-font;
 }

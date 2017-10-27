@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import cloud, * as fromCloud from './cloud';
 import topics, * as fromTopics from './topics';
+import infoPanel, * as fromInfoPanel from './infoPanel';
 
 
 /**
@@ -10,6 +11,7 @@ import topics, * as fromTopics from './topics';
 const rootReducer = combineReducers({
   cloud,
   topics,
+  infoPanel,
 });
 export default rootReducer;
 
@@ -36,3 +38,6 @@ export const getCloudIsTopicsReloadRequested = state =>
 
 export const getCloudPieChartPercentage = state =>
   fromCloud.getPieChartPercentage(state.cloud);
+
+export const getInfoPanelIsDisplayed = state =>
+  fromInfoPanel.getIsDisplayed(state.infoPanel);

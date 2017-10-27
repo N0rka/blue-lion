@@ -44,7 +44,7 @@ const defaultProps = {
 
 const InfoBar = (props) => {
   /**
-   * Renders the volume information of the selected topic
+   * Renders selected topic information
    * @return {ReactComponent}
    */
   const {

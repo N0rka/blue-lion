@@ -2,3 +2,17 @@ $color-grey: #a5aba4;
 $color-green: #23d51d;
 $color-red: #f41617;
 $color-blue: #6496c8;
+$global-font: "Bitter", serif;
+
+button {
+  font-size: 18px;
+  font-family: $global-font;
+  color: $color-blue;
+  background: rgba(0,0,0,0);
+}
+
+button:hover{
+  transition-duration: 2s;
+  color: #ffffff;
+  background: #2c74c8;
+}
